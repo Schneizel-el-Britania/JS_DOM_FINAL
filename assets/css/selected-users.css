@@ -1,0 +1,20 @@
+.selected-users-container {
+  padding: 2rem;
+  margin: 0.7rem;
+  background-color: var(--second-color);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.selected-users-list {
+  height: 100%;
+  text-align: center;
+}
+.selected-users-list > li + li {
+  margin-top: 0.7rem;
+}
+
+.selected-users-list > li:hover{
+  cursor: pointer;
+  color: var(--main-color);
+  font-weight: 600;
+}

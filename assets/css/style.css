@@ -16,10 +16,18 @@
   z-index: -1;
 }
 
-.main-header {
-  margin: 2.5rem 0;
-  text-align: center;
+.margin-top {
+  margin-top: 2rem;
+}
+.align-center{
+  justify-content: center;
+}
+
+.header-style {
+  margin-bottom: 2rem;
   color: var(--main-color);
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
 }
