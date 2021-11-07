@@ -37,6 +37,9 @@ function createElement(type = 'div', { attributes, classNames, events }, ...chil
 const userCardsContainer = document.getElementById('user-cards-container');
 
 function handleAddUserToList() { console.log('article'); }
+function handleImageError({ target }) {
+  target.remove();
+}
 
 function createUserListItems(user, icons) {
   const listItem = [];
@@ -60,10 +63,18 @@ fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => 
     const userInitials = item.firstName[0] + item.lastName[0];
 
     const userInfoContainer = createElement('div', {},
-      createElement('img', {
-        attributes: { src: item.profilePicture, alt: userFullName },
-        classNames: ['user-avatar']
-      }),
+      createElement('div', {
+        classNames: ['user-avatar-wrapper']
+      },
+        createElement('div', {
+          classNames: ['initials', 'avatar-border']
+        }, document.createTextNode(userInitials)),
+        createElement('img', {
+          attributes: { src: item.profilePicture, alt: userFullName },
+          classNames: ['user-avatar', 'avatar-border'],
+          events: { error: handleImageError }
+        }),
+      ),
       createElement('p', {
         classNames: ['user-name']
       }, document.createTextNode(userFullName))
