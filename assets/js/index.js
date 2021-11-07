@@ -75,7 +75,6 @@ function handleImageError({ target }) {
 function handleRemoveUser(selectedUsers, { target: { parentElement } } = event) {
   selectedUsers.delete(Array.from(parentElement.children).filter(item => item.dataset.id)[0].innerHTML);
   parentElement.remove();
-  console.log(selectedUsers);
 }
 
 fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => {

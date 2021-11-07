@@ -6,9 +6,6 @@
 }
 
 .selected-users-list {
-  width: 50%;
-  margin: auto;
-  text-align: start;
   position: relative;
 }
 
@@ -17,7 +14,7 @@
 }
 
 .selected-users-list > li p {
-  padding: 0 2rem;
+  padding-left: 2rem;
 }
 
 .rm-user-btn {
