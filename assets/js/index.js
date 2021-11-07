@@ -1,15 +1,14 @@
 
-new Map().set('www.facebook.com','fab fa-facebook');
-
+new Map().set('www.facebook.com','fab fa-facebook').set();
 
 
 /**
  * 
  * @param {string} type 
  * @param {object} options 
- * @param {string} options.typeEvent
+ * @param {object} options.attributes
  * @param {string[]} options.classNames
- * @param {function} options.onClick
+ * @param {object} options.events
  * @param {Node[]} children 
  * return {Node}
  */
