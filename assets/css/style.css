@@ -1,5 +1,6 @@
 :root {
   --main-color: #ff676c;
+  --blur-color: #ff8185;
   --second-color: white;
   --border-radius: 10px;
 
@@ -7,7 +8,7 @@
   font-size: 17px;
 }
 
-body{
+body {
   background-color: var(--second-color);
 }
 
@@ -23,7 +24,7 @@ body{
 .margin-top {
   margin-top: 2rem;
 }
-.align-center{
+.align-center {
   justify-content: center;
 }
 
