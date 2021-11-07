@@ -1,9 +1,3 @@
-
-const snIcons = new Map().set('www.facebook.com', 'fab fa-facebook-square')
-  .set('twitter.com', 'fab fa-twitter-square')
-  .set('www.instagram.com', 'fab fa-instagram-square');
-
-
 /**
  * 
  * @param {string} type 
@@ -33,30 +27,61 @@ function createElement(type = 'div', { attributes, classNames, events }, ...chil
   return elem;
 }
 
-
 const userCardsContainer = document.getElementById('user-cards-container');
+const selectedUsersList = document.getElementById('selected-users-list');
 
-function handleAddUserToList() { console.log('article'); }
+function handleAddUserToList({ id }, selectedUsers, userName) {
+  if (!selectedUsers.has(userName)) {
+    selectedUsers.add(userName);
+    const listItem = createElement('li', {},
+      createElement('span', {
+        classNames: ['rm-user-btn'],
+        events: { click: () => handleRemoveUser(selectedUsers) }
+      }, document.createTextNode('✖')),
+      createElement('p', {
+        attributes: { 'data-id': id }
+      }, document.createTextNode(userName))
+    );
+    selectedUsersList.append(listItem);
+  }
+}
+
 function handleImageError({ target }) {
   target.remove();
 }
 
-function createUserListItems(user, icons) {
-  const listItem = [];
-  for (const url of user.contacts) {
-    const hostName = new URL(url).hostname;
-    if (icons.has(hostName)) {
-      listItem.push(createElement('li', {},
-        createElement('a', { attributes: { href: url, target: '_blank' } },
-          createElement('i', {
-            classNames: icons.get(hostName).split(' ')
-          }))))
-    }
-  }
-  return listItem;
+function handleRemoveUser(selectedUsers, { target: { parentElement } } = event) {
+  selectedUsers.delete(Array.from(parentElement.children).filter(item => item.dataset.id)[0].innerHTML);
+  parentElement.remove();
+  console.log(selectedUsers);
 }
 
 fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => {
+  const selectedUsers = new Set();
+
+  const snIcons = new Map().set('www.facebook.com', 'fab fa-facebook-square')
+    .set('twitter.com', 'fab fa-twitter-square')
+    .set('www.instagram.com', 'fab fa-instagram-square');
+
+
+  function createUserListItems(user, icons) {
+    const listItem = [];
+    for (const url of user.contacts) {
+      const hostName = new URL(url).hostname;
+      if (icons.has(hostName)) {
+        listItem.push(createElement('li', {},
+          createElement('a', {
+            attributes: {
+              href: url, target: '_blank'
+            }
+          }, createElement('i', {
+            classNames: icons.get(hostName).split(' ')
+          }))))
+      }
+    }
+    return listItem;
+  }
+
   userList.filter(({ firstName, lastName }) => firstName && lastName).forEach((item) => {
 
     const userFullName = item.firstName + ' ' + item.lastName;
@@ -85,9 +110,8 @@ fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => 
     }, ...createUserListItems(item, snIcons))
 
     const userCard = createElement('article', {
-      attributes: {},
       classNames: ['user-card'],
-      events: { click: handleAddUserToList }
+      events: { click: () => handleAddUserToList(item, selectedUsers, userFullName) }
     },
       userInfoContainer, snLinks
     );
