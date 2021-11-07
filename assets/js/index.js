@@ -1,3 +1,7 @@
+const snIcons = new Map().set('www.facebook.com', 'fab fa-facebook-square')
+  .set('twitter.com', 'fab fa-twitter-square')
+  .set('www.instagram.com', 'fab fa-instagram-square');
+
 /**
  * 
  * @param {string} type 
@@ -30,6 +34,24 @@ function createElement(type = 'div', { attributes, classNames, events }, ...chil
 const userCardsContainer = document.getElementById('user-cards-container');
 const selectedUsersList = document.getElementById('selected-users-list');
 
+function createUserListItems(user, icons) {
+  const listItem = [];
+  for (const url of user.contacts) {
+    const hostName = new URL(url).hostname;
+    if (icons.has(hostName)) {
+      listItem.push(createElement('li', {},
+        createElement('a', {
+          attributes: {
+            href: url, target: '_blank'
+          }
+        }, createElement('i', {
+          classNames: icons.get(hostName).split(' ')
+        }))))
+    }
+  }
+  return listItem;
+}
+
 function handleAddUserToList({ id }, selectedUsers, userName) {
   if (!selectedUsers.has(userName)) {
     selectedUsers.add(userName);
@@ -58,29 +80,6 @@ function handleRemoveUser(selectedUsers, { target: { parentElement } } = event) 
 
 fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => {
   const selectedUsers = new Set();
-
-  const snIcons = new Map().set('www.facebook.com', 'fab fa-facebook-square')
-    .set('twitter.com', 'fab fa-twitter-square')
-    .set('www.instagram.com', 'fab fa-instagram-square');
-
-
-  function createUserListItems(user, icons) {
-    const listItem = [];
-    for (const url of user.contacts) {
-      const hostName = new URL(url).hostname;
-      if (icons.has(hostName)) {
-        listItem.push(createElement('li', {},
-          createElement('a', {
-            attributes: {
-              href: url, target: '_blank'
-            }
-          }, createElement('i', {
-            classNames: icons.get(hostName).split(' ')
-          }))))
-      }
-    }
-    return listItem;
-  }
 
   userList.filter(({ firstName, lastName }) => firstName && lastName).forEach((item) => {
 
@@ -119,6 +118,3 @@ fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => 
     userCardsContainer.append(userCard);
   })
 })
-
-
-
