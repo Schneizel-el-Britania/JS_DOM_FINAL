@@ -4,7 +4,7 @@
 }
 
 .user-card {
-  width: 270px;
+  /* width: 270px; */
   padding: 2rem;
   margin: 0.5rem;
   background-color: var(--second-color);
@@ -15,13 +15,15 @@
 }
 
 .user-avatar {
-  width: 50%;
+  --avatar-size: 160px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
 
   border: 2px solid transparent;
   outline: 3px solid var(--main-color);
 
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   border-radius: 50%;
 }
 
@@ -37,4 +39,7 @@
   display: inline;
   color: var(--main-color);
   font-size: 1.8rem;
+}
+.sn-links > li + li {
+  margin-left: 0.5rem;
 }
