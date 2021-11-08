@@ -116,4 +116,4 @@ fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => 
 
     userCardsContainer.append(userCard);
   })
-})
+}).catch(error => console.log('Got exception: ', error));
