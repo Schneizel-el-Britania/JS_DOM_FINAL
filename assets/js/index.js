@@ -72,6 +72,28 @@ function handleImageError({ target }) {
   target.remove();
 }
 
+
+const removeErrorCard = ({ target: { parentElement } }) => parentElement.remove();
+const appendErrorMessage = () => {
+  const errorMessage = createElement('p', {
+    classNames: ['err-message']
+  },
+    createElement('i', {
+      classNames: ['fas', 'fa-dizzy'],
+    }),
+    document.createTextNode('we are currently working on resolving the issue')
+  )
+  userCardsContainer.append(errorMessage);
+}
+const removeSelectedUsersWrapper = () => document.getElementById('selected-users-wrapper').remove();
+
+
+function handleErrorInstance() {
+  removeErrorCard(event);
+  appendErrorMessage();
+  removeSelectedUsersWrapper();
+}
+
 function handleRemoveUser(selectedUsers, { target: { parentElement } } = event) {
   selectedUsers.delete(Array.from(parentElement.children).filter(item => item.dataset.id)[0].innerHTML);
   parentElement.remove();
@@ -116,4 +138,23 @@ fetch('./assets/json/data.json').then((data) => data.json()).then((userList) => 
 
     userCardsContainer.append(userCard);
   })
-}).catch(error => console.log('Got exception: ', error));
+}).catch((error) => {
+  console.error('Got exception: ', error);
+
+  const errorCard = createElement('article', {
+    classNames: ['error-msg-card', 'col-10', 'col-md-8', 'col-lg-4']
+  },
+    createElement('h2', {
+      classNames: ['err-header']
+    }, document.createTextNode('Error')),
+    createElement('p', {
+      classNames: ['err-text']
+    }, document.createTextNode('Oops, something went wrong. Please try again later.')),
+    createElement('button', {
+      classNames: ['err-btn'],
+      events: { 'click': handleErrorInstance }
+    }, document.createTextNode('ok'))
+  );
+
+  userCardsContainer.append(errorCard);
+});

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/user-cards.css" />
     <link rel="stylesheet" href="./assets/css/selected-users.css" />
-    <link rel="stylesheet" href="./assets/css/error-card.css" />
+    <link rel="stylesheet" href="./assets/css/error-notification.css" />
     <script defer src="./assets/js/index.js"></script>
   </head>
   <body>
@@ -20,14 +20,15 @@
       <h1 class="header-style margin-top">Actors</h1>
       <div class="row">
         <section id="user-cards-container" class="user-cards-container align-center col-12">
-          <article class="error-msg-card col-4">
+          <!-- <article class="error-msg-card col-4">
             <h2 class="err-header">Error</h2>
             <p class="err-text">Oops, something went wrong. Please try again later.</p>
             <button class="err-btn">ok</button>
-          </article>
+          </article> -->
+          <!-- <p class="err-message"><i class="fas fa-dizzy"></i>we are currently working on resolving the issue</p> -->
         </section>
       </div>
-      <div class="row margin-top align-center">
+      <div id="selected-users-wrapper" class="row margin-top align-center">
         <section class="selected-users-container col-12 col-md-10 col-lg-8">
           <h2 class="header-style">you choosed</h2>
           <ul id="selected-users-list" class="selected-users-list"></ul>

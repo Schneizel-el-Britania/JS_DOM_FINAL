@@ -2,10 +2,13 @@
   --main-color: #ff676c;
   --blur-color: #ff8185;
   --second-color: white;
+  --text-color: #412121;
+
   --border-radius: 10px;
 
   font-family: sans-serif;
   font-size: 17px;
+  color: var(--text-color);
 }
 
 body {

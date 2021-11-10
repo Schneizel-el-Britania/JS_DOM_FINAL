@@ -4,6 +4,7 @@
   border-radius: var(--border-radius);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
   text-align: center;
+  background-color: var(--second-color);
 }
 
 .err-header {
@@ -27,4 +28,16 @@
   color: var(--second-color);
   background-color: var(--main-color);
   text-transform: uppercase;
+}
+
+.err-message {
+  padding-top: 4rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.err-message > .fa-dizzy {
+  padding-right: 1rem;
+  color: var(--main-color);
+  font-size: 2rem;
 }
