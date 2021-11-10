@@ -1,0 +1,30 @@
+.error-msg-card {
+  padding: 2rem 2.5rem;
+
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.err-header {
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.err-text {
+  padding: 1rem 0;
+  line-height: 1.5;
+}
+
+.err-btn {
+  width: 100%;
+  padding: 0.5rem 0;
+
+  border: none;
+  border-radius: calc(var(--border-radius) * 2);
+  color: var(--second-color);
+  background-color: var(--main-color);
+  text-transform: uppercase;
+}

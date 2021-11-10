@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/user-cards.css" />
     <link rel="stylesheet" href="./assets/css/selected-users.css" />
+    <link rel="stylesheet" href="./assets/css/error-card.css" />
     <script defer src="./assets/js/index.js"></script>
   </head>
   <body>
@@ -18,7 +19,13 @@
     <main class="container">
       <h1 class="header-style margin-top">Actors</h1>
       <div class="row">
-        <section id="user-cards-container" class="user-cards-container align-center col-12"></section>
+        <section id="user-cards-container" class="user-cards-container align-center col-12">
+          <article class="error-msg-card col-4">
+            <h2 class="err-header">Error</h2>
+            <p class="err-text">Oops, something went wrong. Please try again later.</p>
+            <button class="err-btn">ok</button>
+          </article>
+        </section>
       </div>
       <div class="row margin-top align-center">
         <section class="selected-users-container col-12 col-md-10 col-lg-8">
